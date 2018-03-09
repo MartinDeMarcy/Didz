@@ -1,0 +1,8 @@
+{
+  "name": "Didz",
+  "app_id": "88c7b32e",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
