@@ -2,7 +2,7 @@
 
   <ion-header>
     <ion-toolbar>
-      <ion-title>Pages</ion-title>
+      <ion-title>Didz</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -11,9 +11,12 @@
       <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
+      <button ion-item color="danger" (click)="logout()" >Logout</button>
     </ion-list>
   </ion-content>
 
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false">
+  
+</ion-nav>

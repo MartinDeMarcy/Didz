@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-
+import { AngularFireAuth } from 'angularfire2/auth'
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
-import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { ListPage } from '../pages/list/list';
+import { HomePage } from '../pages/home/home';
+import { Profile } from '../pages/profile/profile';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,11 +16,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  // make HelloIonicPage the root (or first) page
-  rootPage = HelloIonicPage;
+  // make LoginPage the root (or first) page
+  rootPage = LoginPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(
+  constructor(private afAuth: AngularFireAuth,
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
@@ -29,8 +30,8 @@ export class MyApp {
 
     // set our app's pages
     this.pages = [
-      { title: 'Hello Ionic', component: HelloIonicPage },
-      { title: 'My First List', component: ListPage }
+      { title: 'Home', component: HomePage },
+      { title: 'Profile', component: Profile }
     ];
   }
 
@@ -48,5 +49,13 @@ export class MyApp {
     this.menu.close();
     // navigate to the new page if it is not the current page
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.afAuth.auth.signOut().then(() => {
+        this.menu.close();
+        this.nav.setRoot('LoginPage');
+      }
+    );
   }
 }
